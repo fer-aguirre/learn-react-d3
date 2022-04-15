@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading CSV data</title>
+</head>
+<body>
+
+    <script>
+        const fetchText = async (url) => {
+            const response = await fetch(url);
+            return  await response.text();
+        };
+        const csvUrl = 'https://gist.githubusercontent.com/fer-aguirre/5e5d3fa25a42c62f1f3a9889bb8a2978/raw//cssNamedColors.csv';
+        
+        fetchText(csvUrl).then(text => {
+            console.log(text);
+        });
+        
+        
+        // fetch(url).then(response => {
+        //     response.text().then(text => {
+        //         console.log(text);
+        //     }) 
+        // });  
+    </script>
+
+</body>
+</html>
