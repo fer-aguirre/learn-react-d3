@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsing CSV data</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/react@16.9.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.9.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/d3@7.4.4/dist/d3.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+
+    <pre id="message-container"></pre>
+
+    <script>
+        const csvUrl = 'https://gist.githubusercontent.com/fer-aguirre/5e5d3fa25a42c62f1f3a9889bb8a2978/raw//cssNamedColors.csv';
+        d3.csv(csvUrl).then(data => {
+            let message = '';
+            message = message + data.length + ' rows\n';
+            message = message + data.columns.length + ' columns\n'; 
+            message = message + Math.round(d3.csvFormat(data).length / 1024) + ' KB\n'; 
+            document.getElementById('message-container').textContent = message
+        });
+
+        // With fetch, async and await:
+        // const fetchText = async (url) => {
+        //     const response = await fetch(url);
+        //     return  await response.text();
+        // };
+        // fetchText(csvUrl).then(text => {
+        //     const data = d3.csvParse(text);
+        //     let message = '';
+        //     message = message + data.length + ' rows\n';
+        //     message = message + data.columns.length + ' columns\n'; 
+        //     message = message + Math.round(text.length / 1024) + ' KB\n'; 
+        //     document.getElementById('message-container').textContent = message
+        // });
+    </script>
+
+</body>
+</html>
